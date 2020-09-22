@@ -1,0 +1,132 @@
+# dune runtest
+# OCAMLPARAM: unset
+# Workspace root:
+# /Users/michael/Sync/code/interview-prep/leet-code/game-of-life
+$ /usr/local/bin/nproc > /var/folders/lf/1kw_tqg52vn3c4c6tb0lwy8h0000gn/T/dune5c62e1.output 2> /dev/null
+# Auto-detected concurrency: 8
+# disable binary cache
+$ /Users/michael/.opam/4.06.0/bin/ocamlc.opt -config > /var/folders/lf/1kw_tqg52vn3c4c6tb0lwy8h0000gn/T/dunec49109.output
+# Dune context:
+#  { name = "default"
+#  ; kind = "default"
+#  ; profile = Dyn
+#  ; merlin = true
+#  ; for_host = None
+#  ; fdo_target_exe = None
+#  ; build_dir = "default"
+#  ; toplevel_path = Some External "/Users/michael/.opam/4.06.0/lib/toplevel"
+#  ; ocaml_bin = External "/Users/michael/.opam/4.06.0/bin"
+#  ; ocaml = Ok External "/Users/michael/.opam/4.06.0/bin/ocaml"
+#  ; ocamlc = External "/Users/michael/.opam/4.06.0/bin/ocamlc.opt"
+#  ; ocamlopt = Ok External "/Users/michael/.opam/4.06.0/bin/ocamlopt.opt"
+#  ; ocamldep = Ok External "/Users/michael/.opam/4.06.0/bin/ocamldep.opt"
+#  ; ocamlmklib = Ok External "/Users/michael/.opam/4.06.0/bin/ocamlmklib.opt"
+#  ; env =
+#      map
+#        { "INSIDE_DUNE" :
+#            "/Users/michael/Sync/code/interview-prep/leet-code/game-of-life/_build/default"
+#        ; "MANPATH" :
+#            "/Users/michael/Sync/code/interview-prep/leet-code/game-of-life/_build/install/default/bin"
+#        ; "OCAMLFIND_IGNORE_DUPS_IN" :
+#            "/Users/michael/Sync/code/interview-prep/leet-code/game-of-life/_build/install/default/lib"
+#        ; "OCAMLPATH" :
+#            "/Users/michael/Sync/code/interview-prep/leet-code/game-of-life/_build/install/default/lib"
+#        ; "OCAMLTOP_INCLUDE_PATH" :
+#            "/Users/michael/Sync/code/interview-prep/leet-code/game-of-life/_build/install/default/lib/toplevel"
+#        ; "OCAML_COLOR" : "always"
+#        ; "OPAMCOLOR" : "always"
+#        }
+#  ; findlib_path = [ External "/Users/michael/.opam/4.06.0/lib" ]
+#  ; arch_sixtyfour = true
+#  ; natdynlink_supported = true
+#  ; supports_shared_libraries = true
+#  ; ocaml_config =
+#      { version = "4.06.0"
+#      ; standard_library_default = "/Users/michael/.opam/4.06.0/lib/ocaml"
+#      ; standard_library = "/Users/michael/.opam/4.06.0/lib/ocaml"
+#      ; standard_runtime = "/Users/michael/.opam/4.06.0/bin/ocamlrun"
+#      ; ccomp_type = "cc"
+#      ; c_compiler = "cc"
+#      ; ocamlc_cflags =
+#          [ "-O2"; "-pipe"; "-O2"; "-fno-strict-aliasing"; "-fwrapv" ]
+#      ; ocamlopt_cflags =
+#          [ "-O2"; "-pipe"; "-O2"; "-fno-strict-aliasing"; "-fwrapv" ]
+#      ; bytecomp_c_compiler =
+#          [ "cc"
+#          ; "-O2"
+#          ; "-pipe"
+#          ; "-O2"
+#          ; "-fno-strict-aliasing"
+#          ; "-fwrapv"
+#          ; "-D_FILE_OFFSET_BITS=64"
+#          ; "-D_REENTRANT"
+#          ]
+#      ; bytecomp_c_libraries = [ "-lcurses"; "-lpthread" ]
+#      ; native_c_compiler =
+#          [ "cc"
+#          ; "-O2"
+#          ; "-pipe"
+#          ; "-O2"
+#          ; "-fno-strict-aliasing"
+#          ; "-fwrapv"
+#          ; "-D_FILE_OFFSET_BITS=64"
+#          ; "-D_REENTRANT"
+#          ]
+#      ; native_c_libraries = []
+#      ; cc_profile = [ "-pg" ]
+#      ; architecture = "amd64"
+#      ; model = "default"
+#      ; int_size = 63
+#      ; word_size = 64
+#      ; system = "macosx"
+#      ; asm = [ "clang"; "-arch"; "x86_64"; "-Wno-trigraphs"; "-c" ]
+#      ; asm_cfi_supported = true
+#      ; with_frame_pointers = false
+#      ; ext_exe = ""
+#      ; ext_obj = ".o"
+#      ; ext_asm = ".s"
+#      ; ext_lib = ".a"
+#      ; ext_dll = ".so"
+#      ; os_type = "Unix"
+#      ; default_executable_name = "a.out"
+#      ; systhread_supported = true
+#      ; host = "x86_64-apple-darwin19.5.0"
+#      ; target = "x86_64-apple-darwin19.5.0"
+#      ; profiling = true
+#      ; flambda = false
+#      ; spacetime = false
+#      ; safe_string = false
+#      ; exec_magic_number = "Caml1999X011"
+#      ; cmi_magic_number = "Caml1999I022"
+#      ; cmo_magic_number = "Caml1999O022"
+#      ; cma_magic_number = "Caml1999A022"
+#      ; cmx_magic_number = "Caml1999Y022"
+#      ; cmxa_magic_number = "Caml1999Z022"
+#      ; ast_impl_magic_number = "Caml1999M022"
+#      ; ast_intf_magic_number = "Caml1999N022"
+#      ; cmxs_magic_number = "Caml1999D022"
+#      ; cmt_magic_number = "Caml1999T022"
+#      ; natdynlink_supported = true
+#      ; supports_shared_libraries = true
+#      ; windows_unicode = false
+#      }
+#  }
+$ (cd _build/default && /Users/michael/.opam/4.06.0/bin/ocamldep.opt -modules -impl test/tests.ml) > _build/default/test/.tests.eobjs/tests.ml.d
+$ (cd _build/default && /Users/michael/.opam/4.06.0/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -bin-annot -I test/.tests.eobjs/byte -I /Users/michael/.opam/4.06.0/lib/alcotest -I /Users/michael/.opam/4.06.0/lib/alcotest/engine -I /Users/michael/.opam/4.06.0/lib/astring -I /Users/michael/.opam/4.06.0/lib/base -I /Users/michael/.opam/4.06.0/lib/base/caml -I /Users/michael/.opam/4.06.0/lib/base/md5 -I /Users/michael/.opam/4.06.0/lib/base/shadow_stdlib -I /Users/michael/.opam/4.06.0/lib/bin_prot -I /Users/michael/.opam/4.06.0/lib/bin_prot/shape -I /Users/michael/.opam/4.06.0/lib/bytes -I /Users/michael/.opam/4.06.0/lib/cmdliner -I /Users/michael/.opam/4.06.0/lib/core -I /Users/michael/.opam/4.06.0/lib/core_kernel -I /Users/michael/.opam/4.06.0/lib/core_kernel/base_for_tests -I /Users/michael/.opam/4.06.0/lib/fieldslib -I /Users/michael/.opam/4.06.0/lib/fmt -I /Users/michael/.opam/4.06.0/lib/jane-street-headers -I /Users/michael/.opam/4.06.0/lib/lablgtk3 -I /Users/michael/.opam/4.06.0/lib/ocaml/threads -I /Users/michael/.opam/4.06.0/lib/parsexp -I /Users/michael/.opam/4.06.0/lib/ppx_assert/runtime-lib -I /Users/michael/.opam/4.06.0/lib/ppx_bench/runtime-lib -I /Users/michael/.opam/4.06.0/lib/ppx_compare/runtime-lib -I /Users/michael/.opam/4.06.0/lib/ppx_deriving/runtime -I /Users/michael/.opam/4.06.0/lib/ppx_expect/collector -I /Users/michael/.opam/4.06.0/lib/ppx_expect/common -I /Users/michael/.opam/4.06.0/lib/ppx_expect/config -I /Users/michael/.opam/4.06.0/lib/ppx_hash/runtime-lib -I /Users/michael/.opam/4.06.0/lib/ppx_inline_test/config -I /Users/michael/.opam/4.06.0/lib/ppx_inline_test/runtime-lib -I /Users/michael/.opam/4.06.0/lib/ppx_sexp_conv/runtime-lib -I /Users/michael/.opam/4.06.0/lib/re -I /Users/michael/.opam/4.06.0/lib/result -I /Users/michael/.opam/4.06.0/lib/seq -I /Users/michael/.opam/4.06.0/lib/sexplib -I /Users/michael/.opam/4.06.0/lib/sexplib/unix -I /Users/michael/.opam/4.06.0/lib/sexplib0 -I /Users/michael/.opam/4.06.0/lib/spawn -I /Users/michael/.opam/4.06.0/lib/splittable_random -I /Users/michael/.opam/4.06.0/lib/stdio -I /Users/michael/.opam/4.06.0/lib/stdlib-shims -I /Users/michael/.opam/4.06.0/lib/typerep -I /Users/michael/.opam/4.06.0/lib/uchar -I /Users/michael/.opam/4.06.0/lib/uuidm -I /Users/michael/.opam/4.06.0/lib/uutf -I /Users/michael/.opam/4.06.0/lib/variantslib -I boards/.boards.objs/byte -I boards/.boards.objs/native -I lib/.lib.objs/byte -I lib/.lib.objs/native -no-alias-deps -opaque -o test/.tests.eobjs/byte/dune__exe__Tests.cmo -c -impl test/tests.ml)
+$ (cd _build/default && /Users/michael/.opam/4.06.0/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -I test/.tests.eobjs/byte -I test/.tests.eobjs/native -I /Users/michael/.opam/4.06.0/lib/alcotest -I /Users/michael/.opam/4.06.0/lib/alcotest/engine -I /Users/michael/.opam/4.06.0/lib/astring -I /Users/michael/.opam/4.06.0/lib/base -I /Users/michael/.opam/4.06.0/lib/base/caml -I /Users/michael/.opam/4.06.0/lib/base/md5 -I /Users/michael/.opam/4.06.0/lib/base/shadow_stdlib -I /Users/michael/.opam/4.06.0/lib/bin_prot -I /Users/michael/.opam/4.06.0/lib/bin_prot/shape -I /Users/michael/.opam/4.06.0/lib/bytes -I /Users/michael/.opam/4.06.0/lib/cmdliner -I /Users/michael/.opam/4.06.0/lib/core -I /Users/michael/.opam/4.06.0/lib/core_kernel -I /Users/michael/.opam/4.06.0/lib/core_kernel/base_for_tests -I /Users/michael/.opam/4.06.0/lib/fieldslib -I /Users/michael/.opam/4.06.0/lib/fmt -I /Users/michael/.opam/4.06.0/lib/jane-street-headers -I /Users/michael/.opam/4.06.0/lib/lablgtk3 -I /Users/michael/.opam/4.06.0/lib/ocaml/threads -I /Users/michael/.opam/4.06.0/lib/parsexp -I /Users/michael/.opam/4.06.0/lib/ppx_assert/runtime-lib -I /Users/michael/.opam/4.06.0/lib/ppx_bench/runtime-lib -I /Users/michael/.opam/4.06.0/lib/ppx_compare/runtime-lib -I /Users/michael/.opam/4.06.0/lib/ppx_deriving/runtime -I /Users/michael/.opam/4.06.0/lib/ppx_expect/collector -I /Users/michael/.opam/4.06.0/lib/ppx_expect/common -I /Users/michael/.opam/4.06.0/lib/ppx_expect/config -I /Users/michael/.opam/4.06.0/lib/ppx_hash/runtime-lib -I /Users/michael/.opam/4.06.0/lib/ppx_inline_test/config -I /Users/michael/.opam/4.06.0/lib/ppx_inline_test/runtime-lib -I /Users/michael/.opam/4.06.0/lib/ppx_sexp_conv/runtime-lib -I /Users/michael/.opam/4.06.0/lib/re -I /Users/michael/.opam/4.06.0/lib/result -I /Users/michael/.opam/4.06.0/lib/seq -I /Users/michael/.opam/4.06.0/lib/sexplib -I /Users/michael/.opam/4.06.0/lib/sexplib/unix -I /Users/michael/.opam/4.06.0/lib/sexplib0 -I /Users/michael/.opam/4.06.0/lib/spawn -I /Users/michael/.opam/4.06.0/lib/splittable_random -I /Users/michael/.opam/4.06.0/lib/stdio -I /Users/michael/.opam/4.06.0/lib/stdlib-shims -I /Users/michael/.opam/4.06.0/lib/typerep -I /Users/michael/.opam/4.06.0/lib/uchar -I /Users/michael/.opam/4.06.0/lib/uuidm -I /Users/michael/.opam/4.06.0/lib/uutf -I /Users/michael/.opam/4.06.0/lib/variantslib -I boards/.boards.objs/byte -I boards/.boards.objs/native -I lib/.lib.objs/byte -I lib/.lib.objs/native -intf-suffix .ml -no-alias-deps -opaque -o test/.tests.eobjs/native/dune__exe__Tests.cmx -c -impl test/tests.ml)
+$ (cd _build/default && /Users/michael/.opam/4.06.0/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -o test/tests.exe /Users/michael/.opam/4.06.0/lib/base/caml/caml.cmxa /Users/michael/.opam/4.06.0/lib/base/shadow_stdlib/shadow_stdlib.cmxa /Users/michael/.opam/4.06.0/lib/sexplib0/sexplib0.cmxa /Users/michael/.opam/4.06.0/lib/base/base.cmxa -I /Users/michael/.opam/4.06.0/lib/base /Users/michael/.opam/4.06.0/lib/base/md5/md5_lib.cmxa /Users/michael/.opam/4.06.0/lib/ocaml/unix.cmxa -I /Users/michael/.opam/4.06.0/lib/ocaml /Users/michael/.opam/4.06.0/lib/ocaml/bigarray.cmxa -I /Users/michael/.opam/4.06.0/lib/ocaml /Users/michael/.opam/4.06.0/lib/fieldslib/fieldslib.cmxa /Users/michael/.opam/4.06.0/lib/ppx_compare/runtime-lib/ppx_compare_lib.cmxa /Users/michael/.opam/4.06.0/lib/ppx_sexp_conv/runtime-lib/ppx_sexp_conv_lib.cmxa /Users/michael/.opam/4.06.0/lib/variantslib/variantslib.cmxa /Users/michael/.opam/4.06.0/lib/bin_prot/shape/bin_shape_lib.cmxa /Users/michael/.opam/4.06.0/lib/bin_prot/bin_prot.cmxa -I /Users/michael/.opam/4.06.0/lib/bin_prot /Users/michael/.opam/4.06.0/lib/ppx_hash/runtime-lib/ppx_hash_lib.cmxa /Users/michael/.opam/4.06.0/lib/ppx_inline_test/config/inline_test_config.cmxa /Users/michael/.opam/4.06.0/lib/ppx_inline_test/runtime-lib/ppx_inline_test_lib.cmxa /Users/michael/.opam/4.06.0/lib/core_kernel/base_for_tests/base_for_tests.cmxa /Users/michael/.opam/4.06.0/lib/jane-street-headers/jane_street_headers.cmxa /Users/michael/.opam/4.06.0/lib/ppx_assert/runtime-lib/ppx_assert_lib.cmxa /Users/michael/.opam/4.06.0/lib/ppx_bench/runtime-lib/ppx_bench_lib.cmxa /Users/michael/.opam/4.06.0/lib/ppx_expect/common/expect_test_common.cmxa /Users/michael/.opam/4.06.0/lib/ppx_expect/config/expect_test_config.cmxa /Users/michael/.opam/4.06.0/lib/ppx_expect/collector/expect_test_collector.cmxa -I /Users/michael/.opam/4.06.0/lib/ppx_expect/collector /Users/michael/.opam/4.06.0/lib/parsexp/parsexp.cmxa /Users/michael/.opam/4.06.0/lib/sexplib/sexplib.cmxa /Users/michael/.opam/4.06.0/lib/typerep/typerep_lib.cmxa /Users/michael/.opam/4.06.0/lib/splittable_random/splittable_random.cmxa /Users/michael/.opam/4.06.0/lib/stdio/stdio.cmxa /Users/michael/.opam/4.06.0/lib/core_kernel/core_kernel.cmxa -I /Users/michael/.opam/4.06.0/lib/core_kernel /Users/michael/.opam/4.06.0/lib/sexplib/unix/sexplib_unix.cmxa /Users/michael/.opam/4.06.0/lib/ocaml/threads/threads.cmxa -I /Users/michael/.opam/4.06.0/lib/ocaml /Users/michael/.opam/4.06.0/lib/spawn/spawn.cmxa -I /Users/michael/.opam/4.06.0/lib/spawn /Users/michael/.opam/4.06.0/lib/core/core.cmxa -I /Users/michael/.opam/4.06.0/lib/core /Users/michael/.opam/4.06.0/lib/lablgtk3/lablgtk.cmxa /Users/michael/.opam/4.06.0/lib/lablgtk3/gtkThread.cmx -I /Users/michael/.opam/4.06.0/lib/lablgtk3 /Users/michael/.opam/4.06.0/lib/result/result.cmxa /Users/michael/.opam/4.06.0/lib/ppx_deriving/runtime/ppx_deriving_runtime.cmxa lib/lib.cmxa boards/boards.cmxa /Users/michael/.opam/4.06.0/lib/seq/seq.cmxa /Users/michael/.opam/4.06.0/lib/stdlib-shims/stdlib_shims.cmxa /Users/michael/.opam/4.06.0/lib/fmt/fmt.cmxa /Users/michael/.opam/4.06.0/lib/astring/astring.cmxa /Users/michael/.opam/4.06.0/lib/cmdliner/cmdliner.cmxa /Users/michael/.opam/4.06.0/lib/fmt/fmt_cli.cmxa /Users/michael/.opam/4.06.0/lib/uuidm/uuidm.cmxa /Users/michael/.opam/4.06.0/lib/re/re.cmxa /Users/michael/.opam/4.06.0/lib/uutf/uutf.cmxa /Users/michael/.opam/4.06.0/lib/alcotest/engine/alcotest_engine.cmxa /Users/michael/.opam/4.06.0/lib/fmt/fmt_tty.cmxa /Users/michael/.opam/4.06.0/lib/alcotest/alcotest.cmxa test/.tests.eobjs/native/dune__exe__Tests.cmx)
+$ (cd _build/default/test && ./tests.exe -q --color=always)
+> Testing `MyTests'.
+> This run has ID `29A6E1DA-402A-4664-BB4E-F6753D367911'.
+>
+>   ...           still_lifes          0   block.  [OK]          still_lifes          0   block.
+>   ...           still_lifes          1   beehive.  [OK]          still_lifes          1   beehive.
+>   ...           still_lifes          2   loaf.  [OK]          still_lifes          2   loaf.
+>   ...           still_lifes          3   boat.  [OK]          still_lifes          3   boat.
+>   ...           still_lifes          4   tub.  [OK]          still_lifes          4   tub.
+>   ...           oscillators          0   blinker.  [OK]          oscillators          0   blinker.
+>   ...           oscillators          1   toad.  [OK]          oscillators          1   toad.
+>   ...           oscillators          2   beacon.  [OK]          oscillators          2   beacon.
+>
+> Full test results in `~/Sync/code/interview-prep/leet-code/game-of-life/_build/default/test/_build/_tests/MyTests'.
+> Test Successful in 0.000s. 8 tests run.

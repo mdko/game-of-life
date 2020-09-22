@@ -1,0 +1,7 @@
+(executable
+  (name main)
+  (public_name game-of-life)
+  (modes byte exe)
+  (libraries
+    lib
+    boards))

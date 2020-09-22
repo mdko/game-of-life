@@ -1,0 +1,17 @@
+(library
+  (name lib)
+  (modules
+    types
+    board
+    gui
+    tty)
+  ; (inline_tests)
+  (preprocess
+    (pps
+      ppx_deriving.show
+      ppx_deriving.ord
+      ppx_deriving.eq))
+      ; ppx_inline_test))
+  (libraries
+    core
+    lablgtk3))

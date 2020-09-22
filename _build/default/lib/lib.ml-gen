@@ -1,0 +1,11 @@
+(** @canonical Lib.Board *)
+module Board = Lib__Board
+
+(** @canonical Lib.Gui *)
+module Gui = Lib__Gui
+
+(** @canonical Lib.Tty *)
+module Tty = Lib__Tty
+
+(** @canonical Lib.Types *)
+module Types = Lib__Types

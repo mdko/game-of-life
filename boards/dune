@@ -1,0 +1,6 @@
+(library
+  (name boards)
+  (modules
+    still_lifes
+    oscillators
+    spaceships))
