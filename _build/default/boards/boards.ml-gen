@@ -1,8 +1,0 @@
-(** @canonical Boards.Oscillators *)
-module Oscillators = Boards__Oscillators
-
-(** @canonical Boards.Spaceships *)
-module Spaceships = Boards__Spaceships
-
-(** @canonical Boards.Still_lifes *)
-module Still_lifes = Boards__Still_lifes

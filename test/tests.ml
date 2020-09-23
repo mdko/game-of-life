@@ -38,6 +38,17 @@ let test_beacon () =
   test_periodic Oscillators.beacon Oscillators.beacon_after_1_step 1;
   test_periodic Oscillators.beacon Oscillators.beacon 2
 
+let test_pulsar () =
+  test_periodic Oscillators.pulsar Oscillators.pulsar_after_1_step 1;
+  test_periodic Oscillators.pulsar Oscillators.pulsar_after_2_steps 2;
+  test_periodic Oscillators.pulsar Oscillators.pulsar 3
+
+let test_glider () =
+  test_periodic Spaceships.lwss Spaceships.lwss_after_1_step 1;
+  test_periodic Spaceships.lwss Spaceships.lwss_after_2_steps 2;
+  test_periodic Spaceships.lwss Spaceships.lwss_after_3_steps 3;
+  test_periodic Spaceships.lwss Spaceships.lwss 4
+
 let () =
   let open Alcotest in
   run "MyTests" [
@@ -54,6 +65,9 @@ let () =
       test_case "toad" `Quick test_toad;
       test_case "beacon" `Quick test_beacon;
       (* period 3 *)
-      (* test_case "pulsar" `Quick test_pulsar; *)
-    ]
+      test_case "pulsar" `Quick test_pulsar;
+    ];
+    "spaceships", [
+      test_case "lwss" `Quick test_glider;
+    ];
   ]
