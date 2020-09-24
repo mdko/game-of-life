@@ -1,9 +1,6 @@
 open Types
 open Core
 
-let make_pos ncols i =
-  {row=(i / ncols); col=(i mod ncols)}
-
 (* let%test _ = make_pos 3 0 = {row = 0; col = 0}
 let%test _ = make_pos 3 8 = {row = 2; col = 2}
 let%test _ = make_pos 3 9 = {row = 3; col = 0} *)
@@ -79,6 +76,36 @@ let update board cell =
     | _ -> cell
   )
 
+let insert_column board _before_col = board
+let insert_row board _before_row = board
+
+let frontier board side =
+  let {nrows; ncols; _} = board in
+  match side with
+  | `left -> List.init nrows ~f:(fun row -> Option.value_exn (get_cell board {row; col = 0}))
+  | `right -> List.init nrows ~f:(fun row -> Option.value_exn (get_cell board {row; col = ncols - 1}))
+  | `top -> List.init ncols ~f:(fun col -> Option.value_exn (get_cell board {col; row = 0}))
+  | `bottom -> List.init ncols ~f:(fun col -> Option.value_exn (get_cell board {col; row = nrows - 1}))
+
+let expand_frontiers board =
+  let has_living cells = List.exists cells ~f:(fun cell -> cell.state = Alive) in
+  let board =
+    if frontier board `left |> has_living
+    then insert_column board 0
+    else board
+  in let board =
+    if frontier board `right |> has_living
+    then insert_column board (board.ncols)
+    else board
+  in let board = 
+    if frontier board `top |> has_living
+    then insert_row board 0
+    else board
+  in let board = if frontier board `bottom |> has_living
+    then insert_row board (board.nrows)
+    else board
+  in board
+
 let next_board board =
   (* Need to get list of
      - frontier cells that died; if all the cells on the frontier are dead, reduce frontier size down (unless at minimum)
@@ -90,13 +117,15 @@ let next_board board =
 let array_to_board = function
 | (_, _, []) -> failwith "empty array"
 | (nrows, ncols, xs) ->
+  let make_pos ncols i =
+    {row=(i / ncols); col=(i mod ncols)} in
   let cells = List.mapi ~f:(fun i n -> 
       {position = make_pos ncols i; state = (if (n = 1) then Alive else Dead)}) xs in
   {
       nrows;
       ncols;
       cells;
-  }
+  } |> expand_frontiers
 
 let board_to_array board : cell list list =
   let {cells; _} = board in

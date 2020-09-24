@@ -1,3 +1,7 @@
+(* All of these should have a frontier of complete 0's;
+   for arbitrary boards this isn't necessary, as I'll
+   add a frontier of 0's if not present, but for these
+   it is necessary so our unit tests can work. *)
 (* period 2 *)
 let blinker = (
   5,
