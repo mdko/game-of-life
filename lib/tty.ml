@@ -13,7 +13,7 @@ let simulate board ~delay ~ticks =
   let rec aux board tick =
     (* Board.board_to_string board |> Curses.mvwaddstr win 0 0 |> fun _ -> (); *)
     let _err = Curses.move 0 0 in
-    Board.board_to_array board |> List.iter ~f:(
+    Board.rows_of_board board |> List.iter ~f:(
       fun cells ->
         List.iter cells ~f:(fun cell ->
           (match cell.state with

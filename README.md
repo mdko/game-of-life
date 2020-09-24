@@ -4,6 +4,4 @@
 
 # Run
 
-    dune exec -- game-of-life --tty beacon 4
-
-    ./_build/default/bin/main.exe --tty beacon 4
+    dune exec -- game-of-life --tty --delay 0.3 gosper_glider_gun

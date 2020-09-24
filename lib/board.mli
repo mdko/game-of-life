@@ -1,6 +1,6 @@
 open Types
 
-val board_to_array : board -> cell list list
+val rows_of_board : board -> cell list list
 val board_to_string : ?f:(cell -> string) -> board -> string
 val array_to_board : (int * int * int list) -> board
 

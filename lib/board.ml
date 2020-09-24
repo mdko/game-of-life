@@ -76,7 +76,7 @@ let update board cell =
     | _ -> cell
   )
 
-let board_to_array board : cell list list =
+let rows_of_board board : cell list list =
   let {cells; _} = board in
   List.fold_left ~init:[] ~f:(fun accum (c: cell) ->
     match accum with
@@ -114,7 +114,7 @@ let insert_dead_frontier board frontier =
     }
   )
   | `Left | `Right ->
-    let rows = board_to_array board in
+    let rows = rows_of_board board in
     let cells = match frontier with 
       | `Left ->
         List.map rows ~f:(fun row ->
@@ -172,7 +172,7 @@ let array_to_board = function
   } |> expand_frontiers
 
 let board_to_string ?(f: (cell -> string) option) board : string =
-  board_to_array board |>
+  rows_of_board board |>
   List.map ~f:(fun cells ->
     List.map cells ~f:(fun cell -> 
       match f with

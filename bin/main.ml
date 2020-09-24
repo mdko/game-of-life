@@ -5,6 +5,9 @@ open Core
    - add controls to go back/forward steps
    - [x] expand frontier of grid as needed
    - contract frontier of grid as needed (i.e. probably when there are two empty side-by-side rows/cols, reduce to one)
+     - possibly track and update, but not display, out-of-bounds living cells, in case they eventually
+       feed back into the main display
+     - also be able to resize the terminal and have this reflected
    - add ability to start with a blank 100x100 grid, select cells with mouse, and start simulation
  *)
 
