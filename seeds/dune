@@ -1,5 +1,5 @@
 (library
-  (name boards)
+  (name seeds)
   (modules
     still_lifes
     oscillators

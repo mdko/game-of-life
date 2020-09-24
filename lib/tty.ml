@@ -1,7 +1,7 @@
 open Core
 open Types
 
-let simulate board steps =
+let simulate board ~delay ~ticks =
   let win = Curses.initscr () in
   let _err = Curses.curs_set 0 in (* make cursor invisible *)
   let _err = Curses.start_color () in
@@ -10,7 +10,7 @@ let simulate board steps =
   let dead_color = 2 in
   let _err = Curses.init_pair alive_color Curses.Color.white Curses.Color.black in
   let _err = Curses.init_pair dead_color Curses.Color.black Curses.Color.white in *)
-  let rec aux board step =
+  let rec aux board tick =
     (* Board.board_to_string board |> Curses.mvwaddstr win 0 0 |> fun _ -> (); *)
     let _err = Curses.move 0 0 in
     Board.board_to_array board |> List.iter ~f:(
@@ -26,11 +26,11 @@ let simulate board steps =
         let _err = Curses.waddstr win "\n" in ()
     );
     let _err = Curses.refresh () in
-    if Option.is_some steps && step = (Option.value_exn steps - 1)
+    if Option.is_some ticks && tick = (Option.value_exn ticks - 1)
       then ()
       else (
-        let _ = Unix.nanosleep 0.33 in
-        aux (Board.next_board board) (step + 1)
+        let _ = Unix.nanosleep delay in
+        aux (Board.next_board board) (tick + 1)
       )
   in aux board 0;
   Curses.endwin ()

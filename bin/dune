@@ -4,6 +4,6 @@
   (modes byte exe)
   (libraries
     lib
-    boards
+    seeds
     core)
   (preprocess (pps ppx_jane)))

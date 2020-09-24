@@ -1,2 +1,2 @@
 
-let simulate _board _steps = ()
+let simulate _board _delay _ticks = ()
