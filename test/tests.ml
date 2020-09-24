@@ -44,10 +44,14 @@ let test_pulsar () =
   test_periodic Oscillators.pulsar Oscillators.pulsar 3
 
 let test_glider () =
+  test_periodic Spaceships.glider Spaceships.glider_after_1_step 1;
+  test_periodic Spaceships.glider Spaceships.glider_after_2_steps 2;
+  test_periodic Spaceships.glider Spaceships.glider_after_3_steps 3
+
+let test_lwss () =
   test_periodic Spaceships.lwss Spaceships.lwss_after_1_step 1;
   test_periodic Spaceships.lwss Spaceships.lwss_after_2_steps 2;
-  test_periodic Spaceships.lwss Spaceships.lwss_after_3_steps 3;
-  test_periodic Spaceships.lwss Spaceships.lwss 4
+  test_periodic Spaceships.lwss Spaceships.lwss_after_3_steps 3
 
 let () =
   let open Alcotest in
@@ -68,6 +72,6 @@ let () =
       test_case "pulsar" `Quick test_pulsar;
     ];
     "spaceships", [
-      test_case "lwss" `Quick test_glider;
+      test_case "lwss" `Quick test_lwss;
     ];
   ]

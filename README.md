@@ -4,6 +4,6 @@
 
 # Run
 
-    dune exec game-of-life <BOARD>
+    dune exec -- game-of-life beacon 4 -tty
 
-    ./_build/default/bin/main.exe <BOARD>
+    ./_build/default/bin/main.exe board 4 -tty

@@ -11,6 +11,7 @@ B /Users/michael/.opam/4.08.0/lib/cairo2
 B /Users/michael/.opam/4.08.0/lib/core
 B /Users/michael/.opam/4.08.0/lib/core_kernel
 B /Users/michael/.opam/4.08.0/lib/core_kernel/base_for_tests
+B /Users/michael/.opam/4.08.0/lib/curses
 B /Users/michael/.opam/4.08.0/lib/fieldslib
 B /Users/michael/.opam/4.08.0/lib/jane-street-headers
 B /Users/michael/.opam/4.08.0/lib/lablgtk3
@@ -55,6 +56,7 @@ S /Users/michael/.opam/4.08.0/lib/cairo2
 S /Users/michael/.opam/4.08.0/lib/core
 S /Users/michael/.opam/4.08.0/lib/core_kernel
 S /Users/michael/.opam/4.08.0/lib/core_kernel/base_for_tests
+S /Users/michael/.opam/4.08.0/lib/curses
 S /Users/michael/.opam/4.08.0/lib/fieldslib
 S /Users/michael/.opam/4.08.0/lib/jane-street-headers
 S /Users/michael/.opam/4.08.0/lib/lablgtk3

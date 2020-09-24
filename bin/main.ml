@@ -1,6 +1,8 @@
 open Lib
 open Core
 
+(* TODO add controls to go back/forward steps *)
+
 let board_lookup (board_name: string) : (int * int * int list) =
   match board_name with
   | "beehive" -> Boards.Still_lifes.beehive
@@ -13,28 +15,21 @@ let board_lookup (board_name: string) : (int * int * int list) =
   | "toad" -> Boards.Oscillators.toad
   | _ -> failwith "bad board name"
 
-let simulate board steps =
-  let rec aux board step =
-    Board.board_to_string board |> print_endline;
-    if step = (steps - 1)
-      then ()
-      else (
-        Unix.sleep 1;
-        aux (Board.next_board board) (step + 1)
-      )
-  in aux board 0
-
 let command =
   Command.basic
     ~summary:"Simulate Conway's Game of Life for a given starting board"
+    Command.Let_syntax.(
     Command.Param.(
-      map (both
-        (anon ("board" %: string))
-        (anon ("steps" %: int)))
-      ~f:(fun (board, steps) ->
-          let board = board_lookup board |> Board.array_to_board in
-          let () = if steps < 0 then failwith "invalid steps (must be > 0)" in
-          (fun () -> simulate board steps)))
+      let%map 
+        board = anon ("board" %: string)
+        and steps = anon ("steps" %: int)
+        and tty = flag "-tty" no_arg ~doc:" produce output in the terminal"
+      in
+        let board = board_lookup board |> Board.array_to_board in
+        let () = if steps < 0 then failwith "invalid steps (must be > 0)" in
+        match tty with
+        | true -> (fun () -> Tty.simulate board steps)
+        | false -> (fun () -> Gui.simulate board steps)))
 
 let () =
     Command.run ~version:"1.0" command

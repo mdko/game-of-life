@@ -98,18 +98,31 @@ let array_to_board = function
       cells;
   }
 
-let board_to_string ?(f: (cell -> string) option) board =
-  let {ncols; cells; _} = board in
-  List.map ~f:(fun (c: cell) ->
-    let s = match f with
-      | None -> 
-        (match c.state with
-        | Alive -> "1 "
-        | Dead -> "0 "
-        )
-      | Some f -> f c
-    in
-    let nl = if c.position.col = ncols - 1 then "\n" else "" in
-    s ^ nl
+let board_to_array board : cell list list =
+  let {cells; _} = board in
+  List.fold_left ~init:[] ~f:(fun accum (c: cell) ->
+    match accum with
+    | [] -> [[c]]
+    | (h::tl) -> (
+      if c.position.col = 0
+      then [c] :: h :: tl
+      else (c::h) :: tl
+    )
   ) cells
-  |> String.concat ~sep:""
+  |> List.rev_map ~f:(List.rev)
+
+let board_to_string ?(f: (cell -> string) option) board : string =
+  board_to_array board |>
+  List.map ~f:(fun cells ->
+    List.map cells ~f:(fun cell -> 
+      match f with
+        | None -> 
+          (match cell.state with
+          | Alive -> "1"
+          | Dead -> "0"
+          )
+        | Some f -> f cell
+      )
+  ) |> 
+  List.map ~f:(String.concat ~sep:" ") |>
+  String.concat ~sep:"\n"
