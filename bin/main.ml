@@ -3,7 +3,8 @@ open Core
 
 (* TODO
    - add controls to go back/forward steps
-   - expand/contract frontier of grid as needed
+   - [x] expand frontier of grid as needed
+   - contract frontier of grid as needed (i.e. probably when there are two empty side-by-side rows/cols, reduce to one)
  *)
 
 let board_lookup (board_name: string) : (int * int * int list) =

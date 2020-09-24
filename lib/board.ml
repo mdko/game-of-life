@@ -76,43 +76,87 @@ let update board cell =
     | _ -> cell
   )
 
-let insert_column board _before_col = board
-let insert_row board _before_row = board
+let board_to_array board : cell list list =
+  let {cells; _} = board in
+  List.fold_left ~init:[] ~f:(fun accum (c: cell) ->
+    match accum with
+    | [] -> [[c]]
+    | (h::tl) -> (
+      if c.position.col = 0
+      then [c] :: h :: tl
+      else (c::h) :: tl
+    )
+  ) cells
+  |> List.rev_map ~f:(List.rev)
+
+let insert_dead_frontier board frontier =
+  let {cells; nrows; ncols} = board in
+  match frontier with
+  | `Top | `Bottom -> (
+    (* Since the board's cell list is organized as [row1col1;row1col2;...row1coln;row2col1;row2col2;...]
+      can just insert the new row at the beginning or end of the list *)
+    let (rown, incr) = match frontier with
+      | `Top -> (0, 1)
+      | `Bottom -> (nrows, 0)
+      | _ -> failwith "impossible"
+    in
+    let new_row = List.init ncols ~f:(fun col -> {state = Dead; position = {col; row = rown}}) in
+    let rest_cells = List.map cells ~f:(fun cell -> {cell with position = {cell.position with row = cell.position.row + incr}}) in
+    let cells = 
+      if rown = 0
+      then new_row @ rest_cells
+      else rest_cells @ new_row
+    in 
+    {
+      cells;
+      nrows = nrows + 1;
+      ncols;
+    }
+  )
+  | `Left | `Right ->
+    let rows = board_to_array board in
+    let cells = match frontier with 
+      | `Left ->
+        List.map rows ~f:(fun row ->
+          let row = List.map row ~f:(fun cell -> {
+            cell with position = {cell.position with col = cell.position.col + 1}
+          }) in
+          let cell = match row with
+          | (c::_) -> {state = Dead; position = {row = c.position.row; col = 0}}
+          | _ -> failwith "impossible"
+        in cell :: row) |> List.concat
+      | `Right ->
+        List.map rows ~f:(fun row ->
+          let cell = match row with
+          | (c::_) -> {state = Dead; position = {row = c.position.row; col = ncols}}
+          | _ -> failwith "impossible"
+        in row @ [cell]) |> List.concat
+      | _ -> failwith "impossible"
+    in {
+      cells;
+      nrows;
+      ncols = ncols + 1;
+    }
 
 let frontier board side =
   let {nrows; ncols; _} = board in
   match side with
-  | `left -> List.init nrows ~f:(fun row -> Option.value_exn (get_cell board {row; col = 0}))
-  | `right -> List.init nrows ~f:(fun row -> Option.value_exn (get_cell board {row; col = ncols - 1}))
-  | `top -> List.init ncols ~f:(fun col -> Option.value_exn (get_cell board {col; row = 0}))
-  | `bottom -> List.init ncols ~f:(fun col -> Option.value_exn (get_cell board {col; row = nrows - 1}))
+  | `Left -> List.init nrows ~f:(fun row -> Option.value_exn (get_cell board {row; col = 0}))
+  | `Right -> List.init nrows ~f:(fun row -> Option.value_exn (get_cell board {row; col = ncols - 1}))
+  | `Top -> List.init ncols ~f:(fun col -> Option.value_exn (get_cell board {col; row = 0}))
+  | `Bottom -> List.init ncols ~f:(fun col -> Option.value_exn (get_cell board {col; row = nrows - 1}))
 
 let expand_frontiers board =
   let has_living cells = List.exists cells ~f:(fun cell -> cell.state = Alive) in
-  let board =
-    if frontier board `left |> has_living
-    then insert_column board 0
+  List.fold [`Left; `Right; `Top; `Bottom] ~init:board ~f:(fun board frtr ->
+    if frontier board frtr |> has_living
+    then insert_dead_frontier board frtr
     else board
-  in let board =
-    if frontier board `right |> has_living
-    then insert_column board (board.ncols)
-    else board
-  in let board = 
-    if frontier board `top |> has_living
-    then insert_row board 0
-    else board
-  in let board = if frontier board `bottom |> has_living
-    then insert_row board (board.nrows)
-    else board
-  in board
+  )
 
 let next_board board =
-  (* Need to get list of
-     - frontier cells that died; if all the cells on the frontier are dead, reduce frontier size down (unless at minimum)
-     - cells past the frontier that need to be living; if any, expand frontier
-  *)
   let cells = List.map ~f:(update board) board.cells in
-  {board with cells}
+  expand_frontiers {board with cells}
 
 let array_to_board = function
 | (_, _, []) -> failwith "empty array"
@@ -126,19 +170,6 @@ let array_to_board = function
       ncols;
       cells;
   } |> expand_frontiers
-
-let board_to_array board : cell list list =
-  let {cells; _} = board in
-  List.fold_left ~init:[] ~f:(fun accum (c: cell) ->
-    match accum with
-    | [] -> [[c]]
-    | (h::tl) -> (
-      if c.position.col = 0
-      then [c] :: h :: tl
-      else (c::h) :: tl
-    )
-  ) cells
-  |> List.rev_map ~f:(List.rev)
 
 let board_to_string ?(f: (cell -> string) option) board : string =
   board_to_array board |>

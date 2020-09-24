@@ -29,7 +29,7 @@ let simulate board steps =
     if Option.is_some steps && step = (Option.value_exn steps - 1)
       then ()
       else (
-        Unix.sleep 1;
+        let _ = Unix.nanosleep 0.33 in
         aux (Board.next_board board) (step + 1)
       )
   in aux board 0;
