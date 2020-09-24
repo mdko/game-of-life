@@ -1,7 +1,10 @@
 open Lib
 open Core
 
-(* TODO add controls to go back/forward steps *)
+(* TODO
+   - add controls to go back/forward steps
+   - expand/contract frontier of grid as needed
+ *)
 
 let board_lookup (board_name: string) : (int * int * int list) =
   match board_name with
@@ -13,6 +16,10 @@ let board_lookup (board_name: string) : (int * int * int list) =
   | "blinker" -> Boards.Oscillators.blinker
   | "pulsar" -> Boards.Oscillators.pulsar
   | "toad" -> Boards.Oscillators.toad
+  | "glider" -> Boards.Spaceships.glider
+  | "lwss" -> Boards.Spaceships.lwss
+  | "mwss" -> Boards.Spaceships.mwss
+  | "hwss" -> Boards.Spaceships.hwss
   | _ -> failwith "bad board name"
 
 let command =
@@ -22,11 +29,14 @@ let command =
     Command.Param.(
       let%map 
         board = anon ("board" %: string)
-        and steps = anon ("steps" %: int)
-        and tty = flag "-tty" no_arg ~doc:" produce output in the terminal"
+        and steps = anon (maybe ("steps" %: int))
+        and tty = flag "--tty" no_arg ~doc:" produce output in the terminal"
       in
         let board = board_lookup board |> Board.array_to_board in
-        let () = if steps < 0 then failwith "invalid steps (must be > 0)" in
+        let () = match steps with
+          | Some steps -> if steps < 0 then failwith "invalid steps (must be > 0)"
+          | None -> ()
+        in
         match tty with
         | true -> (fun () -> Tty.simulate board steps)
         | false -> (fun () -> Gui.simulate board steps)))
