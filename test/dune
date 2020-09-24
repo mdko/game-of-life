@@ -2,7 +2,7 @@
  (name tests)
  (libraries
   lib
-  boards
+  seeds
   alcotest))
  
 (rule

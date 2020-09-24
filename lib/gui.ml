@@ -1,2 +1,1 @@
-
-let simulate _board _delay _ticks = ()
+let simulate _board _delay _ticks = failwith "Gtk GUI unimplemented"

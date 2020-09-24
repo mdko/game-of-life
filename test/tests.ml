@@ -1,5 +1,5 @@
 open Lib
-open Boards
+open Seeds
 
 let board = Alcotest.testable Types.pp_board ( = )
 

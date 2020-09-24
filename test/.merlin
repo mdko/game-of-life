@@ -53,8 +53,8 @@ B /Users/michael/.opam/4.08.0/lib/uchar
 B /Users/michael/.opam/4.08.0/lib/uuidm
 B /Users/michael/.opam/4.08.0/lib/uutf
 B /Users/michael/.opam/4.08.0/lib/variantslib
-B ../_build/default/boards/.boards.objs/byte
 B ../_build/default/lib/.lib.objs/byte
+B ../_build/default/seeds/.seeds.objs/byte
 B ../_build/default/test/.tests.eobjs/byte
 S /Users/michael/.opam/4.08.0/lib/alcotest
 S /Users/michael/.opam/4.08.0/lib/alcotest/engine
@@ -110,7 +110,7 @@ S /Users/michael/.opam/4.08.0/lib/uchar
 S /Users/michael/.opam/4.08.0/lib/uuidm
 S /Users/michael/.opam/4.08.0/lib/uutf
 S /Users/michael/.opam/4.08.0/lib/variantslib
-S ../boards
 S ../lib
+S ../seeds
 S .
 FLG -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs
