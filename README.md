@@ -8,4 +8,4 @@
 
 # Example
 
-[![asciicast](https://asciinema.org/a/eYASeRpSDJSHEY6RUnA6fdui2.svg)](https://asciinema.org/a/eYASeRpSDJSHEY6RUnA6fdui2)
+![Example simulation of the Gosper Glider Gun](https://github.com/mdko/game-of-life/site/ggg.gif)
