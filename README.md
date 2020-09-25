@@ -8,4 +8,4 @@
 
 # Example
 
-![Example simulation of the Gosper Glider Gun](https://github.com/mdko/game-of-life/site/ggg.gif)
+![Example simulation of the Gosper Glider Gun](https://github.com/mdko/game-of-life/blob/master/site/ggg.gif)
