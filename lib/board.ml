@@ -1,5 +1,7 @@
 open Types
 open Core
+let make_pos ncols i =
+    {row=(i / ncols); col=(i mod ncols)}
 
 (* let%test _ = make_pos 3 0 = {row = 0; col = 0}
 let%test _ = make_pos 3 8 = {row = 2; col = 2}
@@ -161,8 +163,6 @@ let next_board board =
 let array_to_board = function
 | (_, _, []) -> failwith "empty array"
 | (nrows, ncols, xs) ->
-  let make_pos ncols i =
-    {row=(i / ncols); col=(i mod ncols)} in
   let cells = List.mapi ~f:(fun i n -> 
       {position = make_pos ncols i; state = (if (n = 1) then Alive else Dead)}) xs in
   {
