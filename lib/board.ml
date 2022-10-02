@@ -18,9 +18,12 @@ let get_cell board pos =
       let {row; col} = pos in
       Some (List.nth_exn cells (row * ncols + col))
 
-let set_cell board cell =
+let same_pos cell1 cell2 =
+  (cell1.position.row = cell2.position.row) && (cell1.position.col = cell2.position.col)
+
+let set_cell (board: Types.board) (cell: Types.cell) =
   let cells = List.fold_right ~f:(fun curr accum ->
-    if curr.position = cell.position 
+    if same_pos curr cell
     then
       cell :: accum
     else
@@ -63,8 +66,12 @@ let get_neighbors board position : cell list =
     `downright;
   ]
 
-let update board cell =
-  let n_live_neighbors = get_neighbors board cell.position |> List.filter ~f:(fun cell -> cell.state = Alive) |> List.length in
+let is_alive_cell cell = match cell.state with
+| Alive -> true
+| _ -> false
+
+let update board (cell : Types.cell) =
+  let n_live_neighbors = get_neighbors board cell.position |> List.filter ~f:is_alive_cell |> List.length in
   match cell.state with
   | Alive -> (
     match n_live_neighbors with
@@ -149,7 +156,7 @@ let frontier board side =
   | `Bottom -> List.init ncols ~f:(fun col -> Option.value_exn (get_cell board {col; row = nrows - 1}))
 
 let expand_frontiers board =
-  let has_living cells = List.exists cells ~f:(fun cell -> cell.state = Alive) in
+  let has_living cells = List.exists cells ~f:is_alive_cell in
   List.fold [`Left; `Right; `Top; `Bottom] ~init:board ~f:(fun board frtr ->
     if frontier board frtr |> has_living
     then insert_dead_frontier board frtr

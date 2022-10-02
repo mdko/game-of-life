@@ -53,9 +53,9 @@ B /Users/michael/.opam/4.08.0/lib/uchar
 B /Users/michael/.opam/4.08.0/lib/uuidm
 B /Users/michael/.opam/4.08.0/lib/uutf
 B /Users/michael/.opam/4.08.0/lib/variantslib
-B ../../_build/default/game-of-life/lib/.lib.objs/byte
-B ../../_build/default/game-of-life/seeds/.seeds.objs/byte
-B ../../_build/default/game-of-life/test/.tests.eobjs/byte
+B ../_build/default/lib/.lib.objs/byte
+B ../_build/default/seeds/.seeds.objs/byte
+B ../_build/default/test/.tests.eobjs/byte
 S /Users/michael/.opam/4.08.0/lib/alcotest
 S /Users/michael/.opam/4.08.0/lib/alcotest/engine
 S /Users/michael/.opam/4.08.0/lib/astring
