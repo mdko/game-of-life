@@ -3,4 +3,5 @@
   (modules
     still_lifes
     oscillators
-    spaceships))
+    spaceships
+    brooklyn))

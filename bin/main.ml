@@ -28,6 +28,16 @@ let seed_lookup (seed_name: string) : (int * int * int list) =
   | "lwss" -> Seeds.Spaceships.lwss
   | "mwss" -> Seeds.Spaceships.mwss
   | "hwss" -> Seeds.Spaceships.hwss
+  | "rosalie" -> Seeds.Brooklyn.rosalie
+  | "dafodil" -> Seeds.Brooklyn.dafodil
+  | "lily" -> Seeds.Brooklyn.lily
+  | "poppy" -> Seeds.Brooklyn.poppy
+  | "brooklyn" -> Seeds.Brooklyn.brooklyn
+  | "orchid" -> Seeds.Brooklyn.orchid
+  | "daisy" -> Seeds.Brooklyn.daisy
+  | "carnation" -> Seeds.Brooklyn.carnation
+  | "buttercup" -> Seeds.Brooklyn.buttercup
+  | "best_friends_forever" -> Seeds.Brooklyn.best_friends_forever
   | _ -> failwith "bad seed name"
 
 let command =
